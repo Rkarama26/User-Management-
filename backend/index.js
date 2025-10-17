@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3000;
 connectToDB()
 // Allow cross-origin requests
 app.use(cors({
-    origin: [process.env.ALLOWED_ORIGIN], // frontend origin(s)
+    origin: ["http://127.0.0.1:5500/frontend/dashboard.html", "http://127.0.0.1:5500"], // frontend origin(s)
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true

@@ -80,39 +80,55 @@ async function updateProfile() {
     }
 }
 async function loadResources() {
-    let resources = await fetchWithToken(`${API_URL}/resources`);
-    if (resources.error) {
-        showMessage("res-msg", resources.error);
-        return;
+    try {
+        let resources = await fetchWithToken(`${API_URL}/resources`);
+        console.log("Fetched resources:", resources);
+
+        if (!Array.isArray(resources)) {
+            showMessage("res-msg", "Unexpected response format");
+            return;
+        }
+
+        // Filter if user is not admin
+        if (currentUser.role !== "admin") {
+            resources = resources.filter(r => r.owner && r.owner._id === currentUser._id);
+        }
+
+        const tbody = document.querySelector("#res-table tbody");
+        tbody.innerHTML = "";
+
+        if (resources.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;">No resources found</td></tr>`;
+            return;
+        }
+
+        resources.forEach(r => {
+            const ownerEmail = r.owner?.email || "Unknown";
+            const canEditDelete =
+                r.owner && (r.owner._id === currentUser._id || ["admin", "moderator"].includes(currentUser.role));
+
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${r.title}</td>
+                <td>${r.body}</td>
+                <td>${ownerEmail}</td>
+                <td>
+                    ${canEditDelete
+                        ? `<button onclick="editResource('${r._id}')">Edit</button>
+                           <button onclick="deleteResource('${r._id}')">Delete</button>`
+                        : "-"
+                    }
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+    } catch (error) {
+        console.error("Error loading resources:", error);
+        showMessage("res-msg", "Failed to load resources");
     }
-
-    // If user is not admin, filter only own resources
-    if (currentUser.role !== "admin") {
-        resources = resources.filter(r => r.owner._id === currentUser.id);
-    }
-
-    // Populate table
-    const tbody = document.querySelector("#res-table tbody");
-    tbody.innerHTML = "";
-    resources.forEach(r => {
-        const tr = document.createElement("tr");
-
-        // Check if current user can edit/delete this resource
-        const canEditDelete = r.owner._id === currentUser.id || ["admin", "moderator"].includes(currentUser.role);
-
-        tr.innerHTML = `
-            <td>${r.title}</td>
-            <td>${r.body}</td>
-            <td>
-                ${canEditDelete ? `<button onclick="editResource('${r._id}')">Edit</button>
-                <button onclick="deleteResource('${r._id}')">Delete</button>` : "-"}
-            </td>
-        `;
-        tbody.appendChild(tr);
-    });
 }
 
-//  CRUD Operations 
 
 async function createResource() {
     const title = document.getElementById("res-title").value;
@@ -186,3 +202,4 @@ window.onload = () => loadDashboard();
 
 // Bind create button
 document.querySelector(".create").addEventListener("click", createResource);
+
