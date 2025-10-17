@@ -12,6 +12,12 @@ The frontend communicates with a backend API hosted on Render using **JWT authen
 
 ---
 
+
+ deployed link - [Live](https://stately-cuchufli-136091.netlify.app/)
+
+
+---
+
 ## Features
 - User authentication (login/register)
 - JWT-based session management
@@ -44,7 +50,6 @@ frontend/
 
 ```
 
----
 
 ## Setup Instructions
 
