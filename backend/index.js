@@ -16,14 +16,22 @@ connectToDB()
 // Allow cross-origin requests
 app.use(cors({
     origin: [process.env.ALLOWED_ORIGIN], // frontend origin(s)
-    methods: ["GET", "POST", "PUT","PATCH", "DELETE"],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
 }));
 
+app.use("/test", (req, res) => {
+    try {
+        res.status(200).json({ message: "this is my test routes " })
+    } catch (error) {
+        res.status(500).json({ error: error.message})
+
+    }
+})
 // Handle preflight requests for all routes
 // app.options("*", cors());
- 
+
 app.use(express.json());
 
 app.use("/", authRouter)
