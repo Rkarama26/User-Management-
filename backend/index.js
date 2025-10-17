@@ -15,7 +15,9 @@ const PORT = process.env.PORT || 3000;
 connectToDB()
 // Allow cross-origin requests
 app.use(cors({
-    origin: ["http://127.0.0.1:5500/frontend/dashboard.html", "http://127.0.0.1:5500", "https://stately-cuchufli-136091.netlify.app/"], // frontend origin(s)
+    origin: ["http://127.0.0.1:5500/frontend/dashboard.html",
+         "http://127.0.0.1:5500",
+          "https://stately-cuchufli-136091.netlify.app"], // frontend origin(s)
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
