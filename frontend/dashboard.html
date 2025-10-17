@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+<script src="config.js" defer></script>
+</head>
+
+
+<body>
+
+<header>
+    <div id="user-info">Loading...</div>
+    <div>
+        <button onclick="toggleProfile()">Edit Profile</button>
+        <button onclick="logout()">Logout</button>
+    </div>
+</header>
+
+<div class="container">
+    <h2>Manage Resources</h2>
+    <div id="res-msg"></div>
+
+    <div>
+        <input type="text" id="res-title" placeholder="Title">
+        <input type="text" id="res-body" placeholder="Body">
+        <button class="create">Create Resource</button>
+    </div>
+
+    <table id="res-table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Body</th>
+                <th>Owner</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <!-- Hidden profile section -->
+    <div id="profile-container">
+        <h2>Edit Profile</h2>
+        <div id="profile-msg"></div>
+        <div>
+            <label>Name:</label>
+            <input type="text" id="profile-name">
+        </div>
+        <div>
+            <label>Email:</label>
+            <input type="email" id="profile-email">
+        </div>
+        <button onclick="updateProfile()">Update Profile</button>
+    </div>
+</div>
+
+</body>
+
+
+</html>

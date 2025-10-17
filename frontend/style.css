@@ -1,0 +1,192 @@
+/* ---------- General Styles ---------- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background: #f4f6f8;
+    color: #333;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------- Header ---------- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #007bff;
+    color: white;
+    padding: 15px 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+header button {
+    padding: 8px 15px;
+    background: white;
+    color: #007bff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 10px;
+    transition: background 0.3s, color 0.3s;
+}
+
+header button:hover {
+    background: #0056b3;
+    color: white;
+}
+
+/* ---------- Resource Inputs ---------- */
+.container input[type="text"] {
+    padding: 10px;
+    margin: 10px 5px 10px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: calc(50% - 12px);
+    box-sizing: border-box;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+.container input[type="text"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+    outline: none;
+}
+
+.create {
+    padding: 10px 15px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.create:hover {
+    background: #218838;
+}
+
+/* ---------- Messages ---------- */
+#res-msg, #profile-msg {
+    margin: 10px 0;
+    font-weight: bold;
+    color: red;
+}
+
+/* ---------- Table ---------- */
+#res-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#res-table th, #res-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+#res-table th {
+    background: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+#res-table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+#res-table button {
+    padding: 5px 8px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#res-table button:nth-child(1) { background: #ffc107; color: #333; } /* Edit */
+#res-table button:nth-child(1):hover { background: #e0a800; }
+#res-table button:nth-child(2) { background: #dc3545; color: white; } /* Delete */
+#res-table button:nth-child(2):hover { background: #c82333; }
+
+/* ---------- Profile Section ---------- */
+#profile-container {
+    display: none; /* Hidden by default */
+    margin-top: 25px;
+    padding: 20px;
+    background: #f1f5f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+#profile-container h2 {
+    margin-bottom: 15px;
+}
+
+#profile-container div {
+    margin-bottom: 15px;
+}
+
+#profile-container label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+#profile-container input[type="text"], #profile-container input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+#profile-container input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0,123,255,0.3);
+    outline: none;
+}
+
+#profile-container button {
+    padding: 10px 15px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+#profile-container button:hover {
+    background: #0056b3;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .container input[type="text"] {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header button {
+        margin: 5px 0 0 0;
+    }
+}
