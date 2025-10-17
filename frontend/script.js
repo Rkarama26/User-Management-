@@ -13,7 +13,7 @@ async function fetchWithToken(url, options = {}) {
     const token = getToken();
     options.headers = options.headers || {};
     if (token) {
-        options.headers["Authorization"] = "bearer " + token;
+        options.headers["Authorization"] = "Bearer " + token;
     }
     const res = await fetch(url, options);
     return res.json();
